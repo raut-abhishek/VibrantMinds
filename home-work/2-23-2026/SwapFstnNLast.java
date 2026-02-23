@@ -1,17 +1,23 @@
 
 // 12345 o/p == 52341
 
-class SwapNums{
-    int SwapFstnNLastNum(int n){
-        int lastdigit=n%10;
-        int first=n;
-        int count=1;
-        while(first>10){
-            count*=10;
-            first/=10;
-        }
-        return lastdigit*count;
+class SwapNums {
 
+    int SwapFstnNLastNum(int n) {
+
+        int lastDigit = n % 10;
+        int firstDigit = n;
+        int digits = 0;
+        int temp = n;
+        
+        while (temp > 0) {
+            digits++;
+            temp /= 10;
+        }
+        int power = (int) Math.pow(10, digits - 1);
+        firstDigit = n / power;
+        int middle = (n % power) / 10;
+        return (lastDigit * power) + (middle * 10) + firstDigit;
     }
 }
 
