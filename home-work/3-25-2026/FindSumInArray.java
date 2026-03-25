@@ -10,13 +10,13 @@ public class FindSumInArray {
                 }
             }
         }
-        return new int[-1];
+        return new int[]{-1};
     }
 
 
     public static void main(String[] args) {
         int[] arr = {45,3,7,53,27,64,25,45,97,33,90};
-        int sum = 187;
+        int sum = 18755;
         System.out.println(Arrays.toString(findSum(arr, sum)));
     }   
 }
