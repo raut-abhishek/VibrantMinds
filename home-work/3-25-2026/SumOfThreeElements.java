@@ -13,7 +13,7 @@ public class SumOfThreeElements {
                 }
             }
         }
-        return new int[]{}; // return empty if not found
+        return new int[]{};
     }
 
     public static void main(String[] args) {
