@@ -1,7 +1,5 @@
 import java.util.function.Predicate;
 
-import javax.swing.TransferHandler.TransferSupport;
-
 public class PredicateInterface {
     public static void main(String [] args){
         Predicate <Integer> n = (Integer a)->{
