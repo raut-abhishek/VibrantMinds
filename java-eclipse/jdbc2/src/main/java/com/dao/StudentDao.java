@@ -80,7 +80,48 @@ public class StudentDao {
 	
 	
 	
+	/* ---------------------------------------------------------------------------------------------------------------*/
 	
+	
+	public Student findStudentByID(int id) {
+		Student s = null;
+		Connection con = null;
+		PreparedStatement pst = null;
+		ResultSet rs  = null;
+		
+		
+		try {
+			
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_learning", "root", "");
+			String sql = "select id, name, city, percentage from Student where id = ?";
+			pst = con.prepareStatement(sql);
+			pst.setInt(1, id);
+			rs = pst.executeQuery();
+			while(rs.next()) {
+				s = new Student();
+				s.setId(rs.getInt(id));
+				s.setName(rs.getString("name"));
+				s.setCity(rs.getString("city"));
+				s.setPercentage(rs.getDouble("percentage"));
+			}
+			
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				rs.close();
+				pst.close();
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		return s;
+		
+	}
 	
 
 }
