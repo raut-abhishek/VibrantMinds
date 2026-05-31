@@ -10,7 +10,7 @@ public class App
     	
     	StudentDao sd = new StudentDao();
     	Student s = new Student();
-    	s.setId(4); 
+    	s.setId(4);
     	s.setName("Dhanashree");
     	s.setCity("Panhera");
     	s.setPercentage(92.80);
