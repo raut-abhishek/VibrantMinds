@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.model.Student;
 
@@ -121,6 +123,46 @@ public class StudentDao {
 		}
 		return s;
 		
+	}
+	
+	
+	/* ---------------------------------------------------------------------------------------------------------------*/
+	
+	
+	public List<Student> findAllStudents(){
+		List<Student> list = new ArrayList<>();
+		Connection con = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_learning", "root", "");
+			String sql = "select id,name,city,percentage from Student";
+			pst = con.prepareStatement(sql);
+			rs = pst.executeQuery();
+			while(rs.next()) {
+				Student s = new Student();
+				s.setId(rs.getInt("id"));
+				s.setName(rs.getString("name"));
+				s.setCity(rs.getString("city"));
+				s.setPercentage(rs.getDouble("percentage"));
+				list.add(s);
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				rs.close();
+				pst.close();
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		return list;
 	}
 	
 

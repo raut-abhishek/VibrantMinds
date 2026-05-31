@@ -1,5 +1,7 @@
 package com.demo;
 
+import java.util.List;
+
 import com.dao.StudentDao;
 import com.model.Student;
 
@@ -27,12 +29,18 @@ public class App
     	
     	
 //    	FIND SINGLE STUDENT AND UPDATE
-    	Student  s = sd.findStudentByID(4);
-    	System.out.println(s);
-    	s.setCity("ShivajiNagar");
-    	System.out.println(s);
+//    	Student  s = sd.findStudentByID(4);
+//    	System.out.println(s);
+//    	s.setCity("ShivajiNagar");
+//    	System.out.println(s);
 //    	System.out.println(sd.updateStudent(s));
-
     	
+    	
+//    	FIND ALL STUDENTS
+   	    List<Student> list = sd.findAllStudents();
+   	    for(Student s: list){
+            System.out.println(s);
+        }
+
     }
 }
