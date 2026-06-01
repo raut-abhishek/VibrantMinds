@@ -165,5 +165,36 @@ public class StudentDao {
 		return list;
 	}
 	
+	
+	/* ---------------------------------------------------------------------------------------------------------------*/
+	
+	
+	public int deleteStudentById(int id) {
+		int check = 0;
+		Connection con = null;
+		PreparedStatement pst = null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_learning", "root", "");
+			String sql = "Delete from Student where id = ?";
+			pst = con.prepareStatement(sql);
+			pst.setInt(1, id);
+			check = pst.executeUpdate();
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				pst.close();
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}	
+			
+		}
+		
+		return check;
+	}
+	
 
 }
