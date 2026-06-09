@@ -1,5 +1,7 @@
 package com.demo;
 
+import java.util.List;
+
 import com.dao.StudentDao;
 import com.model.Student;
 
@@ -18,9 +20,17 @@ public class App
 //    	s.setPercentage(50.23);
 //    	System.out.println(sd.insertStudent(s));
     	
-    	System.out.println(sd.deleteStudentById(5005));
+//    	DELETE STUDENT
+//    	System.out.println(sd.deleteStudentById(5005));
+
     	
+//    	FIND STUDENT BY ID
+//    	System.out.println(sd.findStudentById(1));
     	
+    	List <Student> list = sd.findStudentByAny("555");
+    	for(Student s: list) {
+    		System.out.println(s);
+    	}
     }
     
     

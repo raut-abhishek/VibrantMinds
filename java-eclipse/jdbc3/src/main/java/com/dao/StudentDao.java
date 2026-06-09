@@ -2,7 +2,10 @@ package com.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.model.Student;
 import com.util.MyDatabase;
@@ -45,4 +48,50 @@ public class StudentDao {
 		}
 		return check;
 	}
+	
+	
+	public Student findStudentById(int id) {
+		Student s = null;
+		String sql = "select id,name,city,percentage from student where id = ?";
+		try(
+				Connection con = MyDatabase.createConnection();
+				PreparedStatement pst = con.prepareStatement(sql);
+			){
+			pst.setInt(1, id);
+			ResultSet rs = pst.executeQuery();
+			List<Student> list = MyDatabase.studentRowMapper(rs);
+			if(!list.isEmpty()) {
+				s = list.get(0);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return s;
+	}
+	
+	public List<Student> findStudentByAny(String value){
+		List<Student> list  = new ArrayList<>();
+		String sql = "select * from student where id like ? or name like ? or city like ? or percentage like ?";
+		try(
+				Connection con = MyDatabase.createConnection();
+				PreparedStatement pst = con.prepareStatement(sql);
+			){
+			pst.setString(1, "%" + value + "%");
+			pst.setString(2, "%" + value + "%");
+			pst.setString(3, "%" + value + "%");
+			pst.setString(4, "%" + value + "%");
+			ResultSet rs = pst.executeQuery();
+			list.addAll(MyDatabase.studentRowMapper(rs));
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+	
+	
+
 }
