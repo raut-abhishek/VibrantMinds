@@ -5,8 +5,13 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.model.Student;
 
 public class MyDatabase {
+
 	public static Connection createConnection() {
 		Connection con = null;
 		try {
@@ -17,9 +22,7 @@ public class MyDatabase {
 		}
 		return con;
 	}
-	
-	
-	
+
 	public static void closeConnection(Connection con, PreparedStatement pst) {
 		try {
 			con.close();
@@ -28,7 +31,7 @@ public class MyDatabase {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void closeConnection(Connection con, PreparedStatement pst, ResultSet rs) {
 		try {
 			con.close();
@@ -38,6 +41,19 @@ public class MyDatabase {
 			e.printStackTrace();
 		}
 	}
+
+	public static List<Student> studentRowMapper(ResultSet rs) throws SQLException {
+		List<Student> list = new ArrayList<>();
+		while (rs.next()) {
+			Student s = new Student();
+			s.setId(rs.getInt("id"));
+			s.setName(rs.getString("name"));
+			s.setCity(rs.getString("city"));
+			s.setPercentage(rs.getDouble("percentage"));
+			list.add(s);
+		}
+		rs.close();
+		return list;
+	}
+
 }
-
-
