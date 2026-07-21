@@ -11,7 +11,7 @@
         </property>
 
         <property name="hibernate.connection.url">
-            jdbc.mysql://localhost:3306/Hibernate
+            jdbc:mysql://localhost:3306/Hibernate
         </property>
 
         <property name="hibernate.connection.username">
@@ -23,7 +23,7 @@
         </property>
 
         <property name="hibernate.dialect">
-            org.hibernate.dialect.MySql8Dialect
+            org.hibernate.dialect.MySQLDialect
         </property>
 
         <property name="hibernate.hbm2ddl.auto">
@@ -33,6 +33,8 @@
         <property name="hibernate.show_sql">
             true
         </property>
+        
+        <mapping resource="Student.hbm.xml"/>
 
     </session-factory>
 </hibernate-configuration>
