@@ -1,13 +1,12 @@
 package com.demo;
 
-/**
- * Hello world!
- *
- */
+import org.hibernate.cfg.Configuration;
+
+
 public class App 
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        Configuration con = new Configuration().configure();
     }
 }
