@@ -8,9 +8,8 @@ public class Student {
 	private double percentage;
 	
 	public Student() {}
-	public Student(int id, String name, String city, double percentage) {
+	public Student(String name, String city, double percentage) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.city = city;
 		this.percentage = percentage;
